@@ -15,5 +15,7 @@ p<-ggplot(datanew, aes(x=地区,weight=percent,fill=MF))+
                 base_size=8,
                 base_line_size=0.8)+
     geom_bar(position="stack")+
-    ggtitle("中国各省性别比")
-ggsave("test2.png",p)
+    ggtitle("中国各省性别比")+
+    labs(x="地区",y="比例")+
+    geom_hline(aes(yintercept=0.5),colour="#990000",linetype="dashed")
+ggsave("test.png",p)
