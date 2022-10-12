@@ -4,7 +4,7 @@
 #include<time.h>
 #include<string.h>
 
-#define n 11 //元素总数
+#define n 100001 //元素总数
 
 void QuickSort(int array[], int left, int right){
   int i, j, key;
