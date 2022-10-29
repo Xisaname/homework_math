@@ -4,7 +4,7 @@
 #include<time.h>
 #include<string.h>
 
-#define n 100001 //元素总数
+#define n 10001 //元素总数
 
 void QuickSort(int array[], int left, int right){
   int i, j, key;
@@ -47,8 +47,9 @@ int count(int x, int S[], int small){
   return a;
 }
 
-int main(){
-
+double LazySelect(){
+  clock_t start, end, start2, end2;
+  start = clock();
   //生成数组S
   int S[n];
   srand((unsigned int)time(NULL));
@@ -65,8 +66,8 @@ int main(){
   QuickSort(R,0,r-1);
 
   //取两个标杆
-  int d = R[(int)(0.5 * r - sqrt(n))];
-  int u = R[(int)(0.5 * r + sqrt(n))];
+  int d = R[(int)(0.5 * r - 0.05*sqrt(n))];
+  int u = R[(int)(0.5 * r + 0.05*sqrt(n))];
 
   //取C，有优化空间
   int ld = count(d, S, 1);
@@ -79,16 +80,31 @@ int main(){
       c++;
     }
   }
-
+  int count = 0;
+  end = clock();
   //判断中心值是否正确
   if (ld <= 0.5 * n && lu <= 0.5 * n && (n-ld-lu) <= 4*r)
   {
+    start2 = clock();
     QuickSort(C,0,(n-ld-lu-1));
+    end2 = clock();
+    double shijian = ((double)(end2+end-start2-start)/1000);
     QuickSort(S,0,n-1);
-    if(C[(int)floor(n/2)-ld+1]==S[n/2+1])
-      printf("Success! The middle item is %d\n.",S[n/2-1]);
+    if(C[(int)floor(n/2)-ld+1]==S[n/2+1]){
+      count=1;
+    }
+    return(shijian);
   }
-  else{
-    printf("r:%d\nld:%d\nlu:%d\nFAIL\n",r,ld,lu);
-  }
+  return ((double)(end-start)/1000);
  }
+
+int main(){
+  int N=1000;
+  int count = 0;
+  double shijian = 0.0;
+  for(int i=0;i<N;i++){
+    shijian+=LazySelect();
+  }
+  printf("The correct rating is %f\n",shijian/N);
+  return (0);
+}

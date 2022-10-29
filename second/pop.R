@@ -1,5 +1,6 @@
 library(ggplot2)
 library(ggprism)
+library(scales)
 data <- read.csv("SexComposition.csv", encoding="UTF-8")
 area<-data[,1]
 MR<-data[,3]
@@ -18,3 +19,4 @@ p<-ggplot(datanew, aes(x=地区,y=pop,fill=MF))+
     ggtitle("中国各省性别比")+
     labs(x="地区",y="人数/万")
 ggsave("pop.png",p)
+show_col(rainbow(10),labels=T)

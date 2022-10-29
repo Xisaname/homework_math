@@ -1,21 +1,3 @@
-# library(rjson)
-# library(ggplot2)
-# china_map<-rgdal::readOGR("china.shp")
-# ggplot(china_map,aes(x=long,y=lat,group=group))+
-# geom_ploygon(fill="white",colour="black")+
-# coord_map("polyconic")+
-# theme(
-#     panel.grid=element_blank(),
-#     panel.background=element_blank(),
-#     axis.text=element_blank(),
-#     axis.ticks=element_blank(),
-#     axis.title=element_blank(),
-#     legend.position=c(0.2,0.3)
-# )
-# china_map<-fromJSON(file="china.json")
-# china_frame<- as.data.frame(china_map)
-# china_map
-# china_frame
 library(geojsonsf)
 library(sf)
 library(ggplot2)
@@ -49,7 +31,7 @@ CHINA <- dplyr::left_join(China,SC_NEW,by= "QUHUADAIMA")
 p<-ggplot()+
   # 绘制主图
   geom_sf(data = CHINA,aes(fill = 性别比)) +
-  scale_fill_gradient(low="#FFFFBFFF",high="#FF0000FF")+
+  scale_fill_gradient(low="#00FFFFFF",high="#FF9900FF")+
 
   # 绘制国境线及十/九段线
   geom_sf(data = gjx)+
