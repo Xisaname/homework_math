@@ -31,7 +31,7 @@ CHINA <- dplyr::left_join(China,SC_NEW,by= "QUHUADAIMA")
 p<-ggplot()+
   # 绘制主图
   geom_sf(data = CHINA,aes(fill = 性别比)) +
-  scale_fill_gradient(low="#00FFFFFF",high="#FF9900FF")+
+  scale_fill_gradient(low="white",high="#FF9900FF")+
 
   # 绘制国境线及十/九段线
   geom_sf(data = gjx)+

@@ -1,4 +1,3 @@
-from itertools import count
 from math import sqrt
 from unittest import result
 import numpy as np
